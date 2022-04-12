@@ -1,12 +1,17 @@
-import { Pressable, FlatList, StyleSheet, Text, View } from 'react-native'
+import { Pressable, FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 
 import Style from '../constants/Style.js' 
 import Button from '../components/Button'
 
 const TrackResult = (p) => {
 
+    //const p = {};
+
+    //const { code } = p;
+    const code = '12345'
+
     const handlerOnBack = () => {
-        p.onBack('TrackSearch')
+        navigation.goBack()
     }
 
     const trackData = [
@@ -44,7 +49,7 @@ const TrackResult = (p) => {
     }  
     //console.log(trackData);
     const trackOk = trackData.filter((item) => {
-        return item.code === p.code
+        return item.code === code
     })
 
     const resultHeader = () => {
@@ -52,10 +57,10 @@ const TrackResult = (p) => {
             <View style={ style.viewResultTop } >
                 <View style={ style.viewResultTopLeft } >
                     <Text style={ style.viewResultTopText } >Código de seguimiento:</Text>
-                    <Text style={ style.viewResultTopTextCode } >{ p.code } </Text>
+                    <Text style={ style.viewResultTopTextCode } >{ code } </Text>
                 </View>
                 <View style={ style.viewResultTopRight } >
-                    <Button title="Volver" style={ style.button }  onPress={ handlerOnBack }></Button>      
+                    {/* <Button title="Volver" style={ style.button }  onPress={ handlerOnBack }></Button>    */}   
                 </View>
             </View>
         )
@@ -65,10 +70,12 @@ const TrackResult = (p) => {
     if(trackOk.length == 0) {
         return (
             <>
-                { resultHeader() }
-                <View style={ style.viewResultContent } >
-                    <Text style={ style.viewResultContentText } >CODIGO INVALIDO</Text>  
-                </View>   
+                <SafeAreaView style={ style.screen }>
+                    { resultHeader() }
+                    <View style={ style.viewResultContent } >
+                        <Text style={ style.viewResultContentText } >CODIGO INVALIDO</Text>  
+                    </View>   
+                </SafeAreaView>
             </>
         )
     }
@@ -77,7 +84,7 @@ const TrackResult = (p) => {
 
     return (
         <>
-            <View style={ style.viewContent }>
+            <SafeAreaView style={ style.screen }>
                 { resultHeader() }
                 {/* <Button title="Volver" style={ style.button }  onPress={ handlerOnBack }></Button> */}            
                 <View style={ style.viewResultList } >         
@@ -93,13 +100,14 @@ const TrackResult = (p) => {
 
                     </FlatList>
                 </View>
-            </View>
+            </SafeAreaView>
         </>
     )
 }
 
 const style = StyleSheet.create({
-    viewContent: Style.viewContent,
+    //viewContent: Style.viewContent,
+    screen: Style.screen,
     input: {
         height: 30,
         borderBottomColor: 'grey',

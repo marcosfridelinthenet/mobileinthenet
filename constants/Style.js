@@ -1,12 +1,25 @@
 //import { Colors } from './Colors.js'
 
-const viewContent = () => {
+
+const screen = () => {
+    return {
+        flex: 1,
+        flexDirection: 'column',
+        backgroundColor: '#000000',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingTop: 30,
+        width: "100%"
+    }
+}
+
+/* const viewContent = () => {
     return {
         backgroundColor: "#111111",
         width: "100%",
         height: "100%"
     }
-}
+} */
 
 
 const viewSearchTop = () => {
@@ -162,12 +175,13 @@ const viewResultContentText = () => {
 }
 
 module.exports = {
+    screen: screen(),
     button: button(),
     input: input(),
     viewResultList: viewResultList(),
     itemList: itemList(),
     itemSeparator: itemSeparator(),
-    viewContent: viewContent(),
+    /* viewContent: viewContent(), */
     viewSearchTop: viewSearchTop(),
     viewSearchTopText: viewSearchTopText(),
     viewSearchContent: viewSearchContent(),

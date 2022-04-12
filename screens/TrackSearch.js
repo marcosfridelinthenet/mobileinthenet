@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { Input, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from 'react-native'
+import { Input, SafeAreaView, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from 'react-native'
 
 import Style from '../constants/Style'
 import Button from '../components/Button'
 
-const TrackSearch = (p) => {
+const TrackSearch = ( p ) => {
     
     const [ codeInput, setCodeInput ] = useState('12345');
 
@@ -15,6 +15,7 @@ const TrackSearch = (p) => {
     const handlerOnSearch = () => {
         if (!Number.isInteger(Number.parseInt(codeInput))) return;
 
+        //navigation.navigate('TrackResult')
         p.onSearch('TrackResult', { code: codeInput } )
         setCodeInput('');
     }
@@ -25,7 +26,7 @@ const TrackSearch = (p) => {
                 Keyboard.dismiss()
             }}>
                 <>
-                    <View style= { style.viewContent }>
+                    <SafeAreaView style= { style.screen }>
                         <View style={ style.viewSearchTop } >
                             <Text style={ style.viewSearchTopText } >Ingrése el código de seguimiento</Text>
                         </View>
@@ -51,7 +52,7 @@ const TrackSearch = (p) => {
                             <Text style={ style. viewSearchNoteText}>Todo otro valor ingresado sera inválido</Text>
                         </View>     
 
-                    </View>               
+                    </SafeAreaView>               
                 </>
             </TouchableWithoutFeedback>
         </>

@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 
-import TrackResult from './screens/TrackResult'
+/* import TrackResult from './screens/TrackResult' */
 import TrackSearch from './screens/TrackSearch'
+import TrackNavigator from './navs/TrackNavigator'
 
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
@@ -26,28 +27,21 @@ export default function App() {
         setSwitchScreen(screen)
         setSwitchScreenProps(props)
     }
+        {/* <View style={style.container}> */}
+       /*  </View> */
 
-    let content = <TrackSearch onSearch={ handlerSwitchScreen } ></TrackSearch>
+    let content = (<>
+            <TrackSearch onSearch={ handlerSwitchScreen } ></TrackSearch>
+        </>
+    )
 
-    if(switchScreen === 'TrackResult') {
-        content = <TrackResult { ...switchScreenProps } onBack={ handlerSwitchScreen }></TrackResult>
-    }
-
+     console.log('switchScreen: ', switchScreen)
+    if(switchScreen === 'TrackResult') 
+        content = <TrackNavigator> </TrackNavigator>
+        
+        {/* <SafeAreaView style={style.container} > */}
+        /* </SafeAreaView> */
     return (
-        <View style={style.container}>
-            { content }
-        </View>
+        content 
     );
 }
-
-const style = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        backgroundColor: '#aaaaaa',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingTop: 30,
-        width: "100%"
-    },
-});

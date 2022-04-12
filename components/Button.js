@@ -4,7 +4,7 @@ import Style from '../constants/Style';
 const Button = (p) => {
 
     const handlerOnPress = () => {
-        p.onPress();
+        if(p.onPress) p.onPress();
     }
 
     //console.log('style.button', style.button)
