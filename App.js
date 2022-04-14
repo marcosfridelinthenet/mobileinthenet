@@ -36,8 +36,9 @@ export default function App() {
     )
 
      console.log('switchScreen: ', switchScreen)
+     console.log('switchScreenProps: ', switchScreenProps)
     if(switchScreen === 'TrackResult') 
-        content = <TrackNavigator> </TrackNavigator>
+        content = <TrackNavigator code={ switchScreenProps.code } onBack={ () => handlerSwitchScreen('TrackSearch') } > </TrackNavigator>
         
         {/* <SafeAreaView style={style.container} > */}
         /* </SafeAreaView> */

@@ -45,11 +45,9 @@ const TrackSearch = ( p ) => {
                         </View>
                         <View style={ style.viewSearchCenter } >
                             <Button title="Buscar" style={ style.button }  onPress={ handlerOnSearch }></Button>
-                        </View>
-
-                        <View style={ style.viewSearchCenter } >
                             <Text style={ style. viewSearchNoteText} >Códigos habilitados: 12345 y 56789</Text>
                             <Text style={ style. viewSearchNoteText}>Todo otro valor ingresado sera inválido</Text>
+
                         </View>     
 
                     </SafeAreaView>               
@@ -76,8 +74,8 @@ const style = StyleSheet.create({
         fontSize: 50,
     }, 
     viewSearchCenter: {
+        ...Style.viewSearchCenter,
         alignItems: "center",
-        justifyContent: "center"
     },
     viewSearchNoteText: {
         color: "white"

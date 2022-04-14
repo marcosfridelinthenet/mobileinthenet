@@ -3,15 +3,18 @@ import { Pressable, FlatList, SafeAreaView, StyleSheet, Text, View } from 'react
 import Style from '../constants/Style.js' 
 import Button from '../components/Button'
 
-const TrackResult = (p) => {
+const TrackResult = ({ navigation, route}) => {
 
     //const p = {};
 
     //const { code } = p;
-    const code = '12345'
+    const code = route.params.code
+    const onBack = route.params.onBack
+
+    //console.log('route.params.code', route.params.code)
 
     const handlerOnBack = () => {
-        navigation.goBack()
+        onBack()
     }
 
     const trackData = [
@@ -33,7 +36,7 @@ const TrackResult = (p) => {
     ]
 
     const renderItem = (data) => {
-        //console.log('renderItem', data)
+        console.log('renderItem', data.item.id)
         return (
 /*             <ItemList
                 style={ styles.itemlist }
@@ -60,7 +63,7 @@ const TrackResult = (p) => {
                     <Text style={ style.viewResultTopTextCode } >{ code } </Text>
                 </View>
                 <View style={ style.viewResultTopRight } >
-                    {/* <Button title="Volver" style={ style.button }  onPress={ handlerOnBack }></Button>    */}   
+                    <Button title="Volver" style={ style.button }  onPress={ () => { route.params.onBack() } }></Button>
                 </View>
             </View>
         )
@@ -94,7 +97,7 @@ const TrackResult = (p) => {
                             } 
                         )}
                         renderItem={ renderItem }
-                        keyExtractor={ (item) => item.code }
+                        keyExtractor={ (item) => item.id }
                         ItemSeparatorComponent={ ItemSeparator }
                     >
 

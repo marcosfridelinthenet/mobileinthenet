@@ -10,7 +10,9 @@ import TrackData from '../screens/TrackData';
 import TrackMap from '../screens/TrackMap';
 
 
-const TrackNavigator = () => {
+const TrackNavigator = (p) => {
+
+    //console.log('p.id', p.code)
 
     const Tab = createBottomTabNavigator();
     
@@ -33,7 +35,7 @@ const TrackNavigator = () => {
 
             return <Ionicons name={ iconName } size={ size } color={ color } />;
             },
-            tabBarActiveTintColor: 'tomato',
+            tabBarActiveTintColor: 'green',
             tabBarInactiveTintColor: 'gray',
             }
         )
@@ -44,7 +46,10 @@ const TrackNavigator = () => {
             <NavigationContainer>
                 <Tab.Navigator 
                     screenOptions={ ({ route }) => TabNavigatorScreenOptions(route) } >
-                    <Tab.Screen name="Seguimiento" component={ TrackResult } options={ { headerShown: false } } ></Tab.Screen>
+                    <Tab.Screen name="Seguimiento" component={ TrackResult } 
+                        options={ {headerShown: false } } 
+                        initialParams={ { code: p.code, onBack: p.onBack } }
+                        ></Tab.Screen>
                     <Tab.Screen name="Destino" component={ TrackData } options={ { headerShown: false } } ></Tab.Screen>
                     <Tab.Screen name="Ubicación" component={ TrackMap } options={ { headerShown: false } } ></Tab.Screen>
                 </Tab.Navigator>

@@ -44,6 +44,7 @@ const viewSearchTopText = () => {
 
 const viewSearchContent = () => {
     return {
+        backgroundColor: 'black',
         height: 150,
         alignItems: "center",
         justifyContent: 'center',
@@ -51,6 +52,13 @@ const viewSearchContent = () => {
         width: "100%"
     }
 
+}
+
+const viewSearchCenter = () => {
+    return {
+        backgroundColor: 'black',
+        height: '100%'
+    }
 }
 
 const viewResultTopLeft = () => {
@@ -192,4 +200,5 @@ module.exports = {
     viewResultTopTextCode: viewResultTopTextCode(),
     viewResultContent: viewResultContent(),
     viewResultContentText: viewResultContentText(),
+    viewSearchCenter: viewSearchCenter(),
 }
