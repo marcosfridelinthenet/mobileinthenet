@@ -1,8 +1,5 @@
 import { useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native';
 
-/* import TrackResult from './screens/TrackResult' */
-import TrackSearch from './screens/TrackSearch'
 import TrackNavigator from './navs/TrackNavigator'
 
 import { useFonts } from 'expo-font';
@@ -21,27 +18,8 @@ export default function App() {
     if(!loaded) 
         return <AppLoading></AppLoading> 
 
-    const handlerSwitchScreen = (screen, props) => {
-/*         console.log('handlerSwitchScreen screen', screen)
-        console.log('handlerSwitchScreen props', props) */
-        setSwitchScreen(screen)
-        setSwitchScreenProps(props)
-    }
-        {/* <View style={style.container}> */}
-       /*  </View> */
+    const content = <TrackNavigator></TrackNavigator>
 
-    let content = (<>
-            <TrackSearch onSearch={ handlerSwitchScreen } ></TrackSearch>
-        </>
-    )
-
-     console.log('switchScreen: ', switchScreen)
-     console.log('switchScreenProps: ', switchScreenProps)
-    if(switchScreen === 'TrackResult') 
-        content = <TrackNavigator code={ switchScreenProps.code } onBack={ () => handlerSwitchScreen('TrackSearch') } > </TrackNavigator>
-        
-        {/* <SafeAreaView style={style.container} > */}
-        /* </SafeAreaView> */
     return (
         content 
     );

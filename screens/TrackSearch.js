@@ -1,11 +1,16 @@
 import { useState } from 'react'
-import { Input, SafeAreaView, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from 'react-native'
+import { Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from 'react-native'
 
-import Style from '../constants/Style'
 import Button from '../components/Button'
 
-const TrackSearch = ( p ) => {
+import styleBrief from '../style/brief';
+
+import trackData from '../data/track'
+
+const TrackSearch = ( { navigation } ) => {
     
+    const Logo = require('../assets/img/logo.png')
+
     const [ codeInput, setCodeInput ] = useState('12345');
 
     const handlerChangeTextCode = (text) => { 
@@ -13,10 +18,30 @@ const TrackSearch = ( p ) => {
     }
 
     const handlerOnSearch = () => {
-        if (!Number.isInteger(Number.parseInt(codeInput))) return;
+        //if (!Number.isInteger(Number.parseInt(codeInput))) return;
 
         //navigation.navigate('TrackResult')
-        p.onSearch('TrackResult', { code: codeInput } )
+        //p.onSearch('TrackResult', { code: codeInput } )
+        //console.log('navigation', navigation)
+        const result = trackData.filter((item) => {
+            return item.code === codeInput
+        })
+
+        //console.log('result[0]', result[0])
+
+        if (result.length === 0){
+            navigation.navigate('Invalid')
+
+        } else {
+            navigation.navigate(
+                'Result', 
+                { 
+                    result: result[0] 
+                } 
+            )
+
+        }
+
         setCodeInput('');
     }
 
@@ -27,28 +52,24 @@ const TrackSearch = ( p ) => {
             }}>
                 <>
                     <SafeAreaView style= { style.screen }>
-                        <View style={ style.viewSearchTop } >
-                            <Text style={ style.viewSearchTopText } >Ingrése el código de seguimiento</Text>
-                        </View>
-                        
-                        <View style={ style.viewSearchContent } >
-                            <TextInput
-                                style={ style.input }
-                                blurOnSubmit
-                                autoCapitalization="none"
-                                autoCorrect={ false } 
-                                keyboardType="numeric"
-                                maxLength={ 5 }
-                                onChangeText={ handlerChangeTextCode }
-                                value={ codeInput }
-                            ></TextInput>
-                        </View>
-                        <View style={ style.viewSearchCenter } >
-                            <Button title="Buscar" style={ style.button }  onPress={ handlerOnSearch }></Button>
-                            <Text style={ style. viewSearchNoteText} >Códigos habilitados: 12345 y 56789</Text>
-                            <Text style={ style. viewSearchNoteText}>Todo otro valor ingresado sera inválido</Text>
 
-                        </View>     
+                        <Image source={ Logo }></Image>
+                        <Text>Track.Inthenet</Text>
+                        <Text>Ingrése el código de seguimiento</Text>
+                        <TextInput
+                            style={ style.input }
+                            blurOnSubmit
+                            autoCapitalization="none"
+                            autoCorrect={ false } 
+                            keyboardType="numeric"
+                            maxLength={ 5 }
+                            onChangeText={ handlerChangeTextCode }
+                            value={ codeInput }
+                        ></TextInput>
+                        <Button title="Buscar" onPress={ () => { handlerOnSearch() } }></Button>
+                        <Text>Códigos habilitados: 12345 y 56789</Text>
+                        <Text>Todo otro valor ingresado sera inválido</Text>
+
 
                     </SafeAreaView>               
                 </>
@@ -58,28 +79,16 @@ const TrackSearch = ( p ) => {
 }
 
 const style = StyleSheet.create({
-    viewContent: {
-        backgroundColor: "#111111",
-        width: "100%",
-        height: "100%"
+    screen: {
+        alignItems: 'center',
+        paddingTop: 100
     },
-    viewSearchTop: Style.viewSearchTop,
-    viewSearchContent: Style.viewSearchContent,
     input: {
-        ...Style.input,
-        backgroundColor: "white"
-    },
-    viewSearchTopText: Style.viewSearchTopText,
-     button: {
-        fontSize: 50,
-    }, 
-    viewSearchCenter: {
-        ...Style.viewSearchCenter,
-        alignItems: "center",
-    },
-    viewSearchNoteText: {
-        color: "white"
-    },
+        ...styleBrief.input,
+        fontSize: 20,
+        width: 100,
+        textAlign: 'center',
+    }
 })
 
 export default TrackSearch;

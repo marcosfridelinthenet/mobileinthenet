@@ -1,9 +1,10 @@
-import { Pressable, StyleSheet, Text } from 'react-native'
-import Style from '../constants/Style';
+import { TouchableOpacity, StyleSheet, Text } from 'react-native'
+import styleBrief from '../style/brief';
 
 const Button = (p) => {
 
     const handlerOnPress = () => {
+        //console.log('p.onPress', p.onPress)
         if(p.onPress) p.onPress();
     }
 
@@ -11,16 +12,16 @@ const Button = (p) => {
 
     return (
         <>
-            <Pressable style={ { ...style.button, ...p.style } }  onPress={ () => { handlerOnPress() } }>
+            <TouchableOpacity style={ { ...style.button, ...p.style, padding: 0 } }  onPress={ () => { handlerOnPress() } }>
                 <Text style={ { ...style.button, ...p.style } }>{ p.title }</Text>
-            </Pressable>        
+            </TouchableOpacity>        
         </>
     )
 }
 
 
 const style = StyleSheet.create({
-    button: Style.button
+    button: styleBrief.button
 })
 
 export default Button;

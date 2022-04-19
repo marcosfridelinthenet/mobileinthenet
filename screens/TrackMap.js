@@ -1,4 +1,5 @@
-import { SafeAreaView, StyleSheet, Text } from 'react-native'
+import { Dimensions , SafeAreaView, StyleSheet, Text } from 'react-native'
+import MapView from 'react-native-maps';
 
 import Style from '../constants/Style'
 
@@ -6,36 +7,17 @@ const TrackMap = () => {
     return (
         <>
             <SafeAreaView style={ style.screen }>
-                <Text>TrackMap</Text>
+                <MapView style={ style.map } />
             </SafeAreaView>
         </>
     )
 }
 
 const style = StyleSheet.create({
-    screen: Style.screen,
-    viewContent: {
-        backgroundColor: "#111111",
-        width: "100%",
-        height: "100%"
-    },
-    viewSearchTop: Style.viewSearchTop,
-    viewSearchContent: Style.viewSearchContent,
-    input: {
-        ...Style.input,
-        backgroundColor: "white"
-    },
-    viewSearchTopText: Style.viewSearchTopText,
-     button: {
-        fontSize: 50,
-    }, 
-    viewSearchCenter: {
-        alignItems: "center",
-        justifyContent: "center"
-    },
-    viewSearchNoteText: {
-        color: "white"
-    },
+    map: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
+      }
 })
 
 export default TrackMap;
