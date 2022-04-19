@@ -33,7 +33,7 @@ const TrackSearch = ( { navigation } ) => {
             navigation.navigate('Invalid')
 
         } else {
-            navigation.navigate(
+            navigation.navigate( 
                 'Result', 
                 { 
                     result: result[0] 
