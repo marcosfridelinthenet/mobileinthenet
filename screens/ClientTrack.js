@@ -1,19 +1,14 @@
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 
-import Style from '../constants/Style.js' 
+import styleBrief from '../style/brief'
 
-const TrackResult = ({ navigation, route}) => {
+
+const ClientTrack = ({ navigation, route}) => {
 
     const result = route.params.result
 
     const renderItem = (data) => {
         return (
-/*             <ItemList
-                style={ styles.itemlist }
-                data={ data }
-                onDelete={ onDelete }
-                onComplete={ onComplete }
-            ></ItemList> */
             <Text
                 style={ !data.item.complete ? { ...style.itemList, ...style.itemListCompleteFalse } : style.itemList }
                 key={ data.item.id }
@@ -33,7 +28,7 @@ const TrackResult = ({ navigation, route}) => {
         )
     } */
 
-    const ItemSeparator = () => <View style={ Style.itemSeparator } />  
+    const ItemSeparator = () => <View style={ styleBrief.itemSeparator } />  
 
     return (
         <>
@@ -61,4 +56,4 @@ const style = StyleSheet.create({
 })
 
 
-export default TrackResult;
+export default ClientTrack;

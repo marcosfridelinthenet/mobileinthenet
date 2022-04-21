@@ -4,17 +4,16 @@ import { Text } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import TrackResult from '../screens/TrackResult';
-import TrackInfo from '../screens/TrackInfo';
-import TrackMap from '../screens/TrackMap';
+import screenClientInfo from '../screens/ClientInfo';
+import screenClientMap from '../screens/ClientMap';
+import screenClientTrack from '../screens/ClientTrack';
 
 import styleBrief from '../style/brief'
 
-const TrackTabNavigator = ({ navigation, route }) => {
+const TabNavigatorClient = ({ navigation, route }) => {
 
     const style = styleBrief.navTab;
 
-    //console.log('TrackTabNavigator route.params.result', route.params.result)
     const Tab = createBottomTabNavigator();
     
     const TabNavigatorScreenOptions = (route) => {
@@ -58,12 +57,7 @@ const TrackTabNavigator = ({ navigation, route }) => {
             tabBarStyle: { 
                 height: style.height,
                 backgroundColor: style.backgroundColor,
-                paddingBottom: 5,
-/*                 height: 90,
-                paddingHorizontal: 5,
-                paddingTop: 0,
-                position: 'absolute',
-                borderTopWidth: 0,    */             
+                paddingBottom: 5,           
                 }
             }
         )
@@ -74,14 +68,14 @@ const TrackTabNavigator = ({ navigation, route }) => {
             {/* <NavigationContainer> */}
                 <Tab.Navigator 
                     screenOptions={ ({ route }) => TabNavigatorScreenOptions(route) } >
-                    <Tab.Screen name="Información" component={ TrackInfo } 
+                    <Tab.Screen name="Información" component={ screenClientInfo } 
                         options={ { headerShown: false } } 
                         initialParams={ { result: route.params.result } } ></Tab.Screen>
-                    <Tab.Screen name="Seguimiento" component={ TrackResult } 
+                    <Tab.Screen name="Seguimiento" component={ screenClientTrack } 
                         options={ { headerShown: false } } 
                         initialParams={ { result: route.params.result } }
                         ></Tab.Screen>
-                    <Tab.Screen name="Ubicación" component={ TrackMap } 
+                    <Tab.Screen name="Ubicación" component={ screenClientMap } 
                         options={ { headerShown: false } } 
                         initialParams={ { result: route.params.result } } ></Tab.Screen>
                 </Tab.Navigator>
@@ -90,4 +84,4 @@ const TrackTabNavigator = ({ navigation, route }) => {
     );    
 }
 
-export default TrackTabNavigator;
+export default TabNavigatorClient;

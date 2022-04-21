@@ -2,11 +2,12 @@ import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 
 import styleBrief from '../style/brief'
 
-const TrackInvalid = () => {
+const Error = ({ navigation, route}) => {
+
     return (
         <>
         <SafeAreaView style={ style.screen }>
-            <Text style={ style.text } >CODIGO INVALIDO</Text>  
+            <Text style={ style.text } >{ route.params.message } </Text>  
         </SafeAreaView>
     </>
     )
@@ -26,4 +27,4 @@ const style = StyleSheet.create({
     }
 })
 
-export default TrackInvalid;
+export default Error;

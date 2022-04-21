@@ -7,7 +7,7 @@ import styleBrief from '../style/brief';
 
 import trackData from '../data/track'
 
-const TrackSearch = ( { navigation } ) => {
+const Client = ( { navigation } ) => {
     
     const Logo = require('../assets/img/logo.png')
 
@@ -18,11 +18,7 @@ const TrackSearch = ( { navigation } ) => {
     }
 
     const handlerOnSearch = () => {
-        //if (!Number.isInteger(Number.parseInt(codeInput))) return;
 
-        //navigation.navigate('TrackResult')
-        //p.onSearch('TrackResult', { code: codeInput } )
-        //console.log('navigation', navigation)
         const result = trackData.filter((item) => {
             return item.code === codeInput
         })
@@ -30,11 +26,16 @@ const TrackSearch = ( { navigation } ) => {
         //console.log('result[0]', result[0])
 
         if (result.length === 0){
-            navigation.navigate('Invalid')
+            navigation.navigate(
+                'Error', 
+                { 
+                    message: 'Código no válido'
+                }
+            )
 
         } else {
             navigation.navigate( 
-                'Result', 
+                'Client', 
                 { 
                     result: result[0] 
                 } 
@@ -91,4 +92,4 @@ const style = StyleSheet.create({
     }
 })
 
-export default TrackSearch;
+export default Client;

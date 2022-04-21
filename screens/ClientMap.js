@@ -3,7 +3,7 @@ import MapView from 'react-native-maps';
 
 import Style from '../constants/Style'
 
-const TrackMap = () => {
+const ClientMap = () => {
     return (
         <>
             <SafeAreaView style={ style.screen }>
@@ -20,4 +20,4 @@ const style = StyleSheet.create({
       }
 })
 
-export default TrackMap;
+export default ClientMap;

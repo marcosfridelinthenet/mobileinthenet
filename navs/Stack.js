@@ -30,7 +30,7 @@ export const LogoTitle = () => {
 /* export const getHeaderTitle = (props) => {
      <LogoTitle {...props} />
 } */
-export const getTitleOptions = () => {
+export const getTitleOptions = (modeTheme) => {
     return  {
         //title: 'Home Title',
         headerTintColor: style.navStack.color,
@@ -39,7 +39,8 @@ export const getTitleOptions = () => {
             color: style.colors.background,
         }, */
         headerStyle: {
-            backgroundColor: style.navStack.backgroundColor,
+            backgroundColor: 
+                modeTheme === 'dark' ? style.colors.dark.background : style.colors.light.background
         },
         headerTitle: (props) => <LogoTitle {...props} />
     }

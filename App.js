@@ -1,9 +1,13 @@
 import { useState } from 'react'
 
-import TrackNavigator from './navs/TrackNavigator'
+import StackNavigatorIndex from './navs/StackNavigatorIndex'
 
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
+
+import { Provider } from 'react-redux';
+
+import store from './store';
 
 export default function App() {
 
@@ -18,9 +22,10 @@ export default function App() {
     if(!loaded) 
         return <AppLoading></AppLoading> 
 
-    const content = <TrackNavigator></TrackNavigator>
-
     return (
-        content 
+        <Provider store={ store } >
+        <StackNavigatorIndex></StackNavigatorIndex>
+       </Provider>
+         
     );
 }
