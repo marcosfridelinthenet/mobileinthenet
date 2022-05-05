@@ -1,13 +1,61 @@
-import { Dimensions , SafeAreaView, StyleSheet, Text } from 'react-native'
-import MapView from 'react-native-maps';
+import { useEffect, useState } from 'react'
+import { Dimensions, SafeAreaView, StyleSheet } from 'react-native'
 
-import Style from '../constants/Style'
+import Loading from './Loading'
 
-const ClientMap = () => {
+import MapGoogle from '../components/MapGoogle'
+import Home from '../assets/img/map/home.png';
+import Delivery from '../assets/img/map/delivery.png';
+
+const ClientMap = ({ navigation, route}) => {
+    const result = route.params.result
+    
+    const [ loading, setLoading ] = useState([])
+    
+    useEffect(async () => {
+        setLoading(false);
+    }, [])
+
+    if(loading) {
+        return (
+            <Loading />
+        )
+    }
+
+    const markers = [
+        { 
+            id: 1,
+            latitude: result.coordinate.latitude,
+            longitude: result.coordinate.longitude,
+            title: result.to,
+            description: result.street ? result.street : '',
+            img: Home
+        }
+    ]
+
+    if(result.delivery){
+        markers.push(
+            { 
+                id: 2,
+                latitude: result.delivery.latitude,
+                longitude: result.delivery.longitude,
+                title: 'Tu paquete está en camino',
+                img: Delivery
+            }
+        )
+    }
+
     return (
         <>
-            <SafeAreaView style={ style.screen }>
-                <MapView style={ style.map } />
+            <SafeAreaView 
+                style={ style.screen }>
+
+                <MapGoogle
+                    style={ style.map }
+                    markers={ markers }
+                >
+
+                </MapGoogle>
             </SafeAreaView>
         </>
     )
@@ -15,9 +63,10 @@ const ClientMap = () => {
 
 const style = StyleSheet.create({
     map: {
+        /* alignSelf: 'stretch',  */
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
       }
 })
 
-export default ClientMap;
+export default ClientMap; 

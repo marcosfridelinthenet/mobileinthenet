@@ -12,7 +12,7 @@ export default (
                 street: 'Nuñez 3986',
                 city: 'Coghlan',
                 state: 'Ciudad de Buenos Aires',
-                coordenate: '-34.5579937,-58.4813105,15',
+                coordenate: '-34.5579937,-58.4813105',
                 comments: 'No funciona timbre. Golpear bien fuerte.',
                 status: 'No salió de depósito'
             },

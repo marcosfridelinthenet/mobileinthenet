@@ -6,26 +6,31 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import screenClientInfo from '../screens/ClientInfo';
 import screenClientMap from '../screens/ClientMap';
-import screenClientTrack from '../screens/ClientTrack';
 
 import styleBrief from '../style/brief'
 
-const TabNavigatorClient = ({ navigation, route }) => {
+import { useSelector } from 'react-redux'
+
+const TabNavigator = ({ navigation, route }) => {
 
     const style = styleBrief.navTab;
 
+    const stateDelivery = useSelector(state => state.delivery)
+    
     const Tab = createBottomTabNavigator();
+    
+    const stateSetting = useSelector(state => state.setting)
     
     const TabNavigatorScreenOptions = (route) => {
         return ({
             tabBarLabel: ({ focused }) => {
                 let label = route.name;
-
+                
                 return (
                     <Text style={ { 
                         fontFamily: style.label.fontFamily, 
                         fontSize: style.label.fontSize, 
-                        color: style.label.color 
+                        color: style.label.color
                         } }>
                         { label }
                     </Text>
@@ -36,27 +41,27 @@ const TabNavigatorClient = ({ navigation, route }) => {
     
               switch(route.name) {
                 case 'Información':
-                    iconName = 'ios-information-circle';
-                    break;
-                case 'Seguimiento':
                     iconName = 'ios-cube';
                     break;
-                case 'Ubicación':
-                    iconName = 'ios-location';
+                case 'Seguimiento':
+                    iconName = 'ios-compass-outline';
                     break;
+/*                 case 'Acerca':
+                    iconName = 'ios-information-circle';
+                    break; */
             }
-
+            
             return <Ionicons 
                     name={ iconName } 
                     size={ style.icon.fontSize } 
-                    color={ style.icon.color } 
+                    color={ style.label.color } 
                 />;
             },
-            tabBarActiveTintColor: 'green',
-            tabBarInactiveTintColor: 'gray',
+            tabBarActiveTintColor: stateSetting.style.font,
+            tabBarInactiveTintColor: stateSetting.style.font,
             tabBarStyle: { 
                 height: style.height,
-                backgroundColor: style.backgroundColor,
+                backgroundColor: stateSetting.style.background,
                 paddingBottom: 5,           
                 }
             }
@@ -65,23 +70,22 @@ const TabNavigatorClient = ({ navigation, route }) => {
     
     return (
         <>
-            {/* <NavigationContainer> */}
-                <Tab.Navigator 
-                    screenOptions={ ({ route }) => TabNavigatorScreenOptions(route) } >
-                    <Tab.Screen name="Información" component={ screenClientInfo } 
-                        options={ { headerShown: false } } 
-                        initialParams={ { result: route.params.result } } ></Tab.Screen>
-                    <Tab.Screen name="Seguimiento" component={ screenClientTrack } 
+            <Tab.Navigator 
+                screenOptions={ ({ route }) => TabNavigatorScreenOptions(route) } >
+                <Tab.Screen name="Información" component={ screenClientInfo } 
+                    options={ { headerShown: false } } 
+                    initialParams={ { result: route.params.result } } ></Tab.Screen>
+                {
+                    stateDelivery.showmap ?
+                    <Tab.Screen name="Seguimiento" component={ screenClientMap } 
                         options={ { headerShown: false } } 
                         initialParams={ { result: route.params.result } }
-                        ></Tab.Screen>
-                    <Tab.Screen name="Ubicación" component={ screenClientMap } 
-                        options={ { headerShown: false } } 
-                        initialParams={ { result: route.params.result } } ></Tab.Screen>
-                </Tab.Navigator>
-            {/* </NavigationContainer> */}
+                    ></Tab.Screen>
+                    : <></>
+                }
+            </Tab.Navigator>
         </>
     );    
 }
 
-export default TabNavigatorClient;
+export default TabNavigator;

@@ -1,6 +1,3 @@
-import { useSelector } from "react-redux"
-
-
 //const settingModeTheme = useSelector(state => state.modeTheme)
 const colors = {    
     light: {
@@ -8,15 +5,17 @@ const colors = {
         backgroundLight: "#ffffff",
         font: "#000",
         fontLight: "#fff",
+        button: "#e83e8c",
         border: "#ac8a65",
         item: "#ede1d6",
         color5: "#84c28f",
     },
     dark: {
         background: '#000000',
-        backgroundLight: "#ffffff",
-        font: "#000",
+        backgroundLight: "#000000",
+        font: "#ffffff",
         fontLight: "#fff",
+        button: "#e83e8c",
         border: "#ac8a65",
         item: "#ede1d6",
         color5: "#84c28f",
@@ -56,20 +55,21 @@ export default {
         label: {
             fontFamily: fonts.principalBold,
             fontSize: 15,
-            color: colors.fontLight
+            color: colors.light.fontLight
         },        
     },
     button: {
         backgroundColor: colors.light.background,
         color: colors.light.fontLight,
-        fontFamily: fonts.secundaryBold,
+        fontFamily: fonts.principalBold,
         fontSize: 20,
         alignItems: "center",
         justifyContent: "center",
-        padding: 10,
+        padding: 5,
 /*         borderWidth: 1,
         borderColor: colors.border,
- */        borderRadius: 10,
+ */        
+        /* borderRadius: 10, */
     },
     input: {        
 /*         fontFamily: fonts.principal,
@@ -95,5 +95,8 @@ export default {
         height: 2,
         width: "100%",
         backgroundColor: "#eeeeee",
+    },
+    text: {
+        fontFamily: fonts.principalBold,
     }
 }
