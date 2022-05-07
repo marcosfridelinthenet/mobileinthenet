@@ -30,6 +30,8 @@ export default function App() {
     if(!loaded) 
         return <AppLoading></AppLoading> 
 
+   /*  console.log(process.env.API_KEY) */
+
     return (
         <Provider store={ store } >
             <ProviderContextProvider>
