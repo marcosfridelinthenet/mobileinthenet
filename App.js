@@ -14,6 +14,8 @@ import ProviderContextProvider from './context/delivery';
 
 import store from './store';
 
+/* import { API_KEY_GOOGLE_MAPS } from '@env' */
+
 export default function App() {
 
     const [ switchScreen, setSwitchScreen ] = useState('')
@@ -30,7 +32,7 @@ export default function App() {
     if(!loaded) 
         return <AppLoading></AppLoading> 
 
-   /*  console.log(process.env.API_KEY) */
+/*     console.log('API_KEY_GOOGLE_MAPS', API_KEY_GOOGLE_MAPS)  */
 
     return (
         <Provider store={ store } >

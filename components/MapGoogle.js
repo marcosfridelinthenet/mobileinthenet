@@ -36,15 +36,24 @@ const MapGoogle = (props) => {
                     minLatitude: item.latitude < limiteTotal.minLatitude ? item.latitude : limiteTotal.minLatitude,
                     maxLatitude: item.latitude > limiteTotal.maxLatitude ? item.latitude : limiteTotal.maxLatitude,
                     minLongitude: item.longitude < limiteTotal.minLongitude ? item.longitude : limiteTotal.minLongitude,
-                    maxLongitude: item.longitude > item.longitude ? limiteTotal.maxLongitude : limiteTotal.maxLongitude
+                    maxLongitude: item.longitude > limiteTotal.maxLongitude ? item.longitude : limiteTotal.maxLongitude
                 }
             }, limit)
     
-            /* console.log('limit', limit) */
+//            console.log('limit', limit)
             initLatitude = (limit.maxLatitude + limit.minLatitude) / 2;
             initLongitude = (limit.maxLongitude + limit.minLongitude) / 2;
 /*             initLatitudeDelta = (limit.maxLatitude - limit.minLatitude) * 1.4;
             initLongitudeDelta = (limit.maxLongitude - limit.minLongitude) * 1.4; */
+//            console.log(Math.abs(limit.maxLatitude), Math.abs(limit.minLatitude), Math.abs(limit.maxLongitude), Math.abs(limit.minLongitude));
+
+            if((Math.abs(limit.maxLatitude) / Math.abs(limit.minLatitude)) > (Math.abs(limit.maxLongitude) / Math.abs(limit.minLongitude))){
+                initLatitudeDelta = initLongitudeDelta = ((Math.abs(limit.maxLatitude) > Math.abs(limit.minLatitude) ? Math.abs(limit.maxLatitude) : Math.abs(limit.minLatitude)) - Math.abs(initLatitude)) * 3;
+                //initLongitudeDelta = initLatitudeDelta;
+
+            } else {    
+                initLatitudeDelta = initLongitudeDelta = ((Math.abs(limit.maxLongitude) > Math.abs(limit.minLongitude) ? Math.abs(limit.maxLongitude) : Math.abs(limit.minLongitude)) - Math.abs(initLongitude)) * 3;
+            }
         }
     }
 
@@ -53,15 +62,18 @@ const MapGoogle = (props) => {
     const initLatitudeDelta = (result.coordenate.longitude - (-58.4852447)) * 15;
     const initLongitudeDelta = (result.coordenate.longitude - (-58.4852447)) * 15; */
     if(initLatitudeDelta < 0) initLatitudeDelta = initLatitudeDelta * -1;
-    if(initLatitudeDelta < 0) initLatitudeDelta = initLatitudeDelta * -1 ;
+    if(initLongitudeDelta < 0) initLongitudeDelta = initLongitudeDelta * -1 ;
 
-    
-    initLatitudeDelta =  0.18 * (width / height);
-    initLatitudeDelta = initLatitudeDelta * (width / height);
 
-    if(props.style)
+
+/*     console.log('latitude:  ', initLatitude);
+    console.log('longitude: ', initLongitude);
+    console.log('latitudeDelta: ', initLatitudeDelta);
+    console.log('longitudeDelta: ', initLatitudeDelta);
+  */
+/*     if(props.style)
         if(!props.style.flex)
-            props.style['heigth'] = Dimensions.get('window').heigth;
+            props.style['heigth'] = Dimensions.get('window').heigth; */
 
     return (
         <>
@@ -77,7 +89,7 @@ const MapGoogle = (props) => {
                 pitchEnabled={ true }
                 zoomEnabled={ true }
                 showUserLocation = {false}
-                mapType="standard"
+                mapType="standard" 
                 >
                 {
                     markers.map((marker) => (
