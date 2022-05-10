@@ -13,19 +13,25 @@ import screenDeliveryInfo from '../screens/DeliveryInfo';
 import TabNavigator from './TabNavigator';
 import screenSetting from '../screens/Setting';
 
+import { getModeTheme } from '../store/actions/setting.action';
 
-import { Button, Image, Text, View } from 'react-native'
+import { Image, Text, View } from 'react-native'
 
 import style from '../style/brief'
 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect } from 'react'
 
 const StackNavigator = (route) => {
+    const dispatch = useDispatch();
 
     const Stack = createNativeStackNavigator();
-    
     const stateSetting = useSelector(state => state.setting)
     
+    useEffect(() => {
+        dispatch(getModeTheme());
+    }, [])
+
     const LogoTitle = () => {
         const Logo = require('../assets/img/logo.png')
         return (

@@ -14,12 +14,22 @@ import ProviderContextProvider from './context/delivery';
 
 import store from './store';
 
+import { initDb } from './db'
+
+initDb()
+    .then(() => console.log('Database Ok'))
+    .catch((err) => {
+        console.log('Database fail connect');
+        console.log(err.message);
+    })
+
 /* import { API_KEY_GOOGLE_MAPS } from '@env' */
 
 export default function App() {
 
     const [ switchScreen, setSwitchScreen ] = useState('')
     const [ switchScreenProps, setSwitchScreenProps ] = useState({})
+    
 
     const [ loaded ] = useFonts({
         BIZUDPGothic: require('./assets/fonts/BIZUDPGothic-Regular.ttf'),
@@ -28,6 +38,8 @@ export default function App() {
     
     LogBox.ignoreLogs(['Setting a timer']);
     LogBox.ignoreLogs(['Cannot update a component']);
+    
+    initDb()
 
     if(!loaded) 
         return <AppLoading></AppLoading> 

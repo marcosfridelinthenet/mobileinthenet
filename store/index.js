@@ -4,7 +4,8 @@ import SettingReducer from "./reducers/setting.reducer";
 
 export default createStore(SettingReducer); */
 
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import thunk from 'redux-thunk'
 
 import DeliveryReducer from "./reducers/delivery.reducer";
 import SettingReducer from "./reducers/setting.reducer";
@@ -14,5 +15,6 @@ export default createStore(
     combineReducers({
         setting: SettingReducer,
         delivery: DeliveryReducer
-    })
+    }),
+    applyMiddleware(thunk)
 );

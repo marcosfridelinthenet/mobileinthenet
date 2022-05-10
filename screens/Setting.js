@@ -5,36 +5,53 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { setModeTheme } from '../store/actions/setting.action';
 
-import { Button, ButtonGroup, Switch , Text } from '@rneui/themed';
+import { Button, Switch , Text } from '@rneui/themed';
 import styleBrief from '../style/brief'
 
-const Setting = () => {
+const Setting = ({ navigation, route}) => {
     const dispatch = useDispatch()
     const stateSetting = useSelector(state => state.setting)
 
     const [isEnabled, setIsEnabled] = useState(stateSetting.modeTheme === 'dark');
+    const modeThemeInit = stateSetting.modeTheme;
 
     const toggleSwitch = () => {
         //console.log('toggleSwitch')
         //console.log('>>>>>>>> Setting stateSetting', stateSetting)
-        dispatch(setModeTheme(!isEnabled ? 'dark' : 'light'));
         setIsEnabled(previousState => !previousState); 
+    }
+
+    const handlerSaveSetting = () => {
+        dispatch(setModeTheme(isEnabled ? 'dark' : 'light'));
+        navigation.goBack();
     }
 
     return (
         <>
             <View style={ { ...style.container, backgroundColor: stateSetting.style.backgroundLight } }>
-                <View style={ style.modeThemeContainer }>
-                    <View style={ style.modeThemeContainerText }>
-                        <Text  style={ { ...style.text, color: stateSetting.style.font } }>Modo oscuro (En Redux { stateSetting.modeTheme })</Text>
+                <View style= { style.containerSetting }>
+                    <View style={ style.modeThemeContainer }>
+                        <View style={ style.modeThemeContainerText }>
+                            <Text  style={ { ...style.text, color: stateSetting.style.font } }>Modo oscuro (En Redux { stateSetting.modeTheme })</Text>
+                        </View>
+                        <Switch
+                            trackColor={{ false: "#767577", true: "#81b0ff" }}
+                            thumbColor={isEnabled ? styleBrief.colors.light.background : "#f4f3f4"}
+                            //ios_backgroundColor="#3e3e3e"
+                            onValueChange={ () => toggleSwitch() }
+                            value={ isEnabled }
+                        />                    
                     </View>
-                    <Switch
-                        trackColor={{ false: "#767577", true: "#81b0ff" }}
-                        thumbColor={isEnabled ? styleBrief.colors.light.background : "#f4f3f4"}
-                        //ios_backgroundColor="#3e3e3e"
-                        onValueChange={ () => toggleSwitch() }
-                        value={ isEnabled }
-                    />                    
+                </View>
+                <View style={ style.containerFooter }>
+                    <Button
+                        title="GUARDAR"
+                        buttonStyle={{
+                            ...style.button, 
+                            backgroundColor: stateSetting.style.button,
+                        }}
+                        onPress={ () => { handlerSaveSetting('Client') } }
+                    />     
                 </View>
             </View>
         </>
@@ -44,6 +61,9 @@ const Setting = () => {
 const style = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    containerSetting: {
+        flex: 1
     },
     modeThemeContainer: {
         flexDirection: 'row',
