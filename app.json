@@ -8,7 +8,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#e83e8c"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -17,6 +17,8 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.inthenet.track",
+      "buildNumber": "1.0.0",
       "supportsTablet": true,
       "config": {
           "googleMapsApiKey": "AIzaSyCIRF_o1VlnsisYShRnc6DDPkR_qts8W-0"
@@ -27,6 +29,10 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
+      "permissions": [
+        "CAMERA",
+        "LOCATION"
+      ],
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyCIRF_o1VlnsisYShRnc6DDPkR_qts8W-0"
