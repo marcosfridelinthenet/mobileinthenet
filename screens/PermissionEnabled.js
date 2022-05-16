@@ -1,4 +1,3 @@
-
 import { SafeAreaView, StyleSheet } from 'react-native'
 import { useSelector } from 'react-redux'
 

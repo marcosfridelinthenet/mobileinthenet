@@ -2,8 +2,7 @@ import { GET_MODE_THEME, SET_MODE_THEME } from "../actions/setting.action";
 
 import style from '../../style/brief'
 
-import { fetchSetting, saveSetting } from '../../db'
-import { Slider } from "@rneui/base";
+import { saveSetting } from '../../db'
 
 const initialState = {
     modeTheme: 'light',

@@ -1,4 +1,4 @@
-import { Dimensions, Image, SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
 import MapView, { PROVIDER_GOOGLE, Marker  } from 'react-native-maps';
 
 import Mark from '../assets/img/map/mark.png'

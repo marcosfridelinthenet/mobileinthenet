@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { Button, Card, Text, SpeedDial } from '@rneui/base';
 
 import styleBrief from '../style/brief'

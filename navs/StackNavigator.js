@@ -8,7 +8,6 @@ import screenClientQr from '../screens/ClientQr';
 import screenError from '../screens/Error';
 import screenDelivery from '../screens/Delivery';
 import screenDeliveryGps from '../screens/DeliveryGps';
-import screenAbout from '../screens/About';
 import screenDeliveryInfo from '../screens/DeliveryInfo';
 import TabNavigator from './TabNavigator';
 import screenSetting from '../screens/Setting';

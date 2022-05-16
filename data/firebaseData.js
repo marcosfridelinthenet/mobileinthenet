@@ -1,5 +1,5 @@
 import db from './firebaseConfig'
-import { collection, doc, docs, getDocs, orderBy, query, setDoc, updateDoc, where } from 'firebase/firestore'
+import { collection, doc, getDocs, query, setDoc, updateDoc, where } from 'firebase/firestore'
 
 export const getTrackInfo = async (code) => {
     try{
